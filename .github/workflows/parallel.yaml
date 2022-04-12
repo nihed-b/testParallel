@@ -1,0 +1,25 @@
+name: parallel-test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: [ ubuntu-latest ]
+    container: python:3.8-buster
+
+    strategy:
+      matrix:
+       # Plan: [ run, walk ]
+       ci_node_total: [ 2 ]
+       ci_node_index: [ 0, 1 ]
+
+    steps:
+      # Checks-out
+      - uses: actions/checkout@v2
+
+      - name: First stage
+        run: |
+          sleep 5;
+      - name: Second stage
+        run: |
+          sleep 7;
